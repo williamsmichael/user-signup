@@ -2,22 +2,6 @@
 
 {% block content %}
 
-<h1>Signup</h1>
-<form action="/signup_confirmation.html" methods=["POST"]>
-    <label>Username
-        <input type="text" name="">
-    </label>    
-    <label>Password
-        <input type="password" name="">
-    </label>    
-    <label>Verify Password
-        <input type="password" name="">
-    </label>    
-    <label>Email (optional)
-        <input type="text" name="">
-    </label>
-    <input type="submit" name="">
-
-</form>
+<a type="button" class="button" href="{{ url_for('signup') }}">Hello</a>
 
 {% endblock %}
