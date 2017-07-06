@@ -4,14 +4,12 @@ import re
 app = Flask(__name__)
 
 
-outcome = []
-
-
 def check_username(username):
-    # check username
     error_username = ""
+
     if len(username) not in range(3, 21):
         error_username = 'Username must be 3 - 20 characters'
+
     if ' ' in username:
         error_username = 'Username does not permit spaces'
 
@@ -19,13 +17,13 @@ def check_username(username):
 
 
 def check_pw(pw_a, pw_b):
-    # check password
     error_pw = ""
-    if len(pw_a) not in range(3, 21):
-        error_pw = 'Password must be 3 - 20 characters'
 
     if pw_a != pw_b:
         error_pw = 'Passwords must match'
+
+    if len(pw_a) not in range(3, 21):
+        error_pw = 'Password must be 3 - 20 characters'
 
     return error_pw
 
@@ -33,13 +31,13 @@ def check_pw(pw_a, pw_b):
 def check_email(email):
     error_email = ""
 
-    if len(email) not in range(3, 21):
-        error_email = 'Password must be 3 - 20 characters'
+    if len(email) not in range(3, 21) and email:
+        error_email = 'Email must be 3 - 20 characters'
 
     if ' ' in email:
-        error_email = 'Username does not permit spaces'
+        error_email = 'Email does not permit spaces'
 
-    if "@" and "." not in email:
+    if "@" and "." not in email and email:
         error_email = "Email must contain @ and ."
 
     return error_email
@@ -59,9 +57,11 @@ def welcome():
         error_pw = check_pw(pw_a, pw_b)
         error_email = check_email(email)
 
+        # errors exist
         if not all(x is "" for x in (error_username, error_pw, error_email)):
             return redirect("/?error_username=" + error_username + "&error_pw=" + error_pw + "&error_email=" + error_email + "&username=" + username + "&email=" + email)
 
+        # no errors exist
         return render_template('welcome.html', title='welcome', username=username)
 
 
