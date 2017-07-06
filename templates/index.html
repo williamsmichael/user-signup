@@ -2,6 +2,31 @@
 
 {% block content %}
 
-<a type="button" class="button" href="{{ url_for('signup') }}">Hello</a>
+<div class="form-style-8">
+    <h2>Signup</h2>
+    <form action="/welcome" method="post">
+    
+        <input type="text" name="username" value="{{ username }}" placeholder="Username" autofocus>
+
+        {% if error_username %}
+        <p class='error'>{{ error_username }}</p>
+        {% endif %}
+
+        <input type="password" name="pw_a" placeholder="Password">
+        <input type="password" name="pw_b" placeholder="Verify Password">
+
+        {% if error_pw %}
+        <p class='error'>{{ error_pw }}</p>
+        {% endif %}
+
+        <input type="text" name="email" value="{{ email }}" placeholder="Email (Optional)">
+
+        {% if error_email %}
+        <p class='error'>{{ error_email }}</p>
+        {% endif %}
+
+        <input type="submit" value="Signup">
+    </form>
+</div>
 
 {% endblock %}
