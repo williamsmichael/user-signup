@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, url_for, redirect
-import re
 
 app = Flask(__name__)
 
@@ -39,9 +38,6 @@ def check_email(email):
 
     if "@" and "." not in email and email:
         error_email = "Email must contain @ and ."
-
-    if not re.match(r"\w+[.|\w]\w+@\w+[.]\w+[.|\w+]\w+", email):
-        error_email = "some kind of error?"
 
     return error_email
 
